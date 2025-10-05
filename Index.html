@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fayad Abdul Salam - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Default Theme - Professional Blue */
+            --bg-primary: #f5f7fa;
+            --bg-secondary: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b7280;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #8b5cf6;
+            --accent-tertiary: #10b981;
+            --accent-quaternary: #f59e0b;
+            --accent-quinary: #ec4899;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #60a5fa;
+            --accent-secondary: #a78bfa;
+            --accent-tertiary: #34d399;
+            --accent-quaternary: #fbbf24;
+            --accent-quinary: #f472b6;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        /* GitHub Theme */
+        [data-color-theme="github"] {
+            --bg-primary: #f6f8fa;
+            --bg-secondary: #ffffff;
+            --accent-primary: #0366d6;
+            --accent-secondary: #6f42c1;
+            --accent-tertiary: #28a745;
+            --accent-quaternary: #ffd33d;
+            --accent-quinary: #ea4a5a;
+        }
+
+        [data-color-theme="github"][data-theme="dark"] {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --accent-primary: #58a6ff;
+            --accent-secondary: #8b949e;
+            --accent-tertiary: #56d364;
+            --accent-quaternary: #f1e05a;
+            --accent-quinary: #f85149;
+        }
+
+        /* VS Code Theme */
+        [data-color-theme="vscode"] {
+            --bg-primary: #f3f3f3;
+            --bg-secondary: #ffffff;
+            --accent-primary: #007acc;
+            --accent-secondary: #c586c0;
+            --accent-tertiary: #4ec9b0;
+            --accent-quaternary: #dcdcaa;
+            --accent-quinary: #d16969;
+        }
+
+        [data-color-theme="vscode"][data-theme="dark"] {
+            --bg-primary: #1e1e1e;
+            --bg-secondary: #2d2d30;
+            --accent-primary: #4fc1ff;
+            --accent-secondary: #c586c0;
+            --accent-tertiary: #4ec9b0;
+            --accent-quaternary: #dcdcaa;
+            --accent-quinary: #f44747;
+        }
+
+        /* Terminal Theme */
+        [data-color-theme="terminal"] {
+            --bg-primary: #0c0c0c;
+            --bg-secondary: #1c1c1c;
+            --accent-primary: #00ff00;
+            --accent-secondary: #00ffff;
+            --accent-tertiary: #ffff00;
+            --accent-quaternary: #ff8000;
+            --accent-quinary: #ff0080;
+        }
+
+        /* Azure Theme */
+        [data-color-theme="azure"] {
+            --bg-primary: #f2f6fc;
+            --bg-secondary: #ffffff;
+            --accent-primary: #0078d4;
+            --accent-secondary: #5c2d91;
+            --accent-tertiary: #107c10;
+            --accent-quaternary: #ff8c00;
+            --accent-quinary: #e81123;
+        }
+
+        [data-color-theme="azure"][data-theme="dark"] {
+            --bg-primary: #1b1f23;
+            --bg-secondary: #2d3748;
+            --accent-primary: #4fc3f7;
+            --accent-secondary: #9c88ff;
+            --accent-tertiary: #4caf50;
+            --accent-quaternary: #ff9800;
+            --accent-quinary: #f44336;
+        }
+
+        /* Docker Theme */
+        [data-color-theme="docker"] {
+            --bg-primary: #f0f8ff;
+            --bg-secondary: #ffffff;
+            --accent-primary: #2496ed;
+            --accent-secondary: #384d54;
+            --accent-tertiary: #00d8ff;
+            --accent-quaternary: #ffca28;
+            --accent-quinary: #ff5722;
+        }
+
+        [data-color-theme="docker"][data-theme="dark"] {
+            --bg-primary: #0b1426;
+            --bg-secondary: #1a252f;
+            --accent-primary: #2496ed;
+            --accent-secondary: #86c5d8;
+            --accent-tertiary: #00d8ff;
+            --accent-quaternary: #ffca28;
+            --accent-quinary: #ff5722;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 12px;
+        }
+
+        .control-button {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .control-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .theme-selector {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 4px;
+            box-shadow: var(--shadow);
+        }
+
+        .theme-selector select {
+            background: transparent;
+            border: none;
+            padding: 4px 8px;
+            font-size: 13px;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(16, 1fr);
+            gap: 20px;
+            margin-top: 80px;
+        }
+
+        .bento-card {
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .bento-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            grid-column: span 5;
+            grid-row: span 2;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: white;
+            position: relative;
+        }
+
+        .profile-card::before {
+            background: linear-gradient(90deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255,255,255,0.3);
+            margin-bottom: 16px;
+        }
+
+        .profile-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .profile-title {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 16px;
+        }
+
+        .contact-info {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .contact-info div {
+            margin-bottom: 4px;
+        }
+
+        .linkedin-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .linkedin-btn:hover {
+            background: rgba(255,255,255,0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Key Metrics Card */
+        .metrics-card {
+            grid-column: span 6;
+            background: linear-gradient(135deg, var(--accent-tertiary) 0%, var(--accent-primary) 100%);
+            color: white;
+        }
+
+        .metrics-card::before {
+            background: linear-gradient(90deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .metric-item {
+            text-align: center;
+        }
+
+        .metric-number {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Summary Card */
+        .summary-card {
+            grid-column: span 5;
+        }
+
+        .summary-card h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .summary-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .highlight-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .highlight-tag {
+            background: var(--accent-primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Skills Card */
+        .skills-card {
+            grid-column: span 8;
+            background: linear-gradient(135deg, var(--accent-quaternary) 0%, var(--accent-quinary) 100%);
+            color: white;
+        }
+
+        .skills-card::before {
+            background: linear-gradient(90deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+        }
+
+        .skills-categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .skill-category h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            opacity: 0.9;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-item {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 6px 10px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Experience Card */
+        .experience-card {
+            grid-column: span 8;
+        }
+
+        .experience-card.first-row {
+            grid-column: span 8;
+        }
+
+        .experience-card.second-row {
+            grid-column: span 8;
+        }
+
+        .experience-item {
+            margin-bottom: 24px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 16px;
+            color: white;
+            position: relative;
+        }
+
+        .experience-item:nth-child(even) {
+            background: linear-gradient(135deg, var(--accent-tertiary), var(--accent-primary));
+        }
+
+        .experience-item:nth-child(3) {
+            background: linear-gradient(135deg, var(--accent-quaternary), var(--accent-quinary));
+        }
+
+        .experience-item:nth-child(4) {
+            background: linear-gradient(135deg, var(--accent-secondary), var(--accent-quinary));
+        }
+
+        .experience-item:nth-child(5) {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+        }
+
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .company-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .position-title {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 4px;
+        }
+
+        .duration {
+            font-size: 13px;
+            opacity: 0.8;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 8px;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+
+        .achievements {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .achievements li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        .achievements li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Education Card */
+        .education-card {
+            grid-column: span 6;
+            background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-quinary) 100%);
+            color: white;
+        }
+
+        .education-card::before {
+            background: linear-gradient(90deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+        }
+
+        .education-item {
+            margin-bottom: 20px;
+            padding: 16px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .education-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .degree {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .university {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 4px;
+        }
+
+        .year {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        /* Certifications Card */
+        .certifications-card {
+            grid-column: span 6;
+        }
+
+        .cert-item {
+            background: var(--accent-primary);
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .cert-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .cert-item:nth-child(2) { background: var(--accent-tertiary); }
+        .cert-item:nth-child(3) { background: var(--accent-quaternary); }
+        .cert-item:nth-child(4) { background: var(--accent-secondary); }
+
+        .cert-year {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        /* Projects Card */
+        .projects-card {
+            grid-column: span 8;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .project-item {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            transition: transform 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+
+        .project-item:hover {
+            transform: scale(1.02);
+        }
+
+        .project-item:nth-child(2) {
+            background: linear-gradient(135deg, var(--accent-tertiary), var(--accent-primary));
+        }
+
+        .project-item:nth-child(3) {
+            background: linear-gradient(135deg, var(--accent-quaternary), var(--accent-quinary));
+        }
+
+        .project-item:nth-child(4) {
+            background: linear-gradient(135deg, var(--accent-secondary), var(--accent-quinary));
+        }
+
+        .project-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .project-desc {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        /* Achievements Card */
+        .achievements-card {
+            grid-column: span 8;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .achievement-item {
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-primary);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-item:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .achievement-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .achievement-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-icon {
+            font-size: 24px;
+        }
+
+        /* Download Button */
+        .download-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent-primary);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .download-btn:hover {
+            background: var(--accent-secondary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            text-decoration: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1400px) {
+            .bento-grid {
+                grid-template-columns: repeat(12, 1fr);
+            }
+            
+            .profile-card { grid-column: span 4; }
+            .metrics-card { grid-column: span 4; }
+            .summary-card { grid-column: span 4; }
+            .skills-card { grid-column: span 8; }
+            .experience-card { grid-column: span 8; }
+            .education-card { grid-column: span 4; }
+            .projects-card { grid-column: span 8; }
+            .achievements-card { grid-column: span 8; }
+        }
+
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(8, 1fr);
+            }
+            
+            .profile-card { grid-column: span 8; grid-row: span 1; }
+            .metrics-card { grid-column: span 4; }
+            .summary-card { grid-column: span 4; }
+            .skills-card { grid-column: span 8; }
+            .experience-card.first-row { grid-column: span 8; }
+            .experience-card.second-row { grid-column: span 8; }
+            .education-card { grid-column: span 4; }
+            .certifications-card { grid-column: span 4; }
+            .projects-card { grid-column: span 8; }
+            .achievements-card { grid-column: span 8; }
+
+            .skills-categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .bento-card {
+                grid-column: span 1 !important;
+                grid-row: span 1 !important;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .achievement-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .skills-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                position: relative;
+                top: 0;
+                right: 0;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+
+            .bento-grid {
+                margin-top: 20px;
+            }
+        }
+
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+        .stagger-7 { animation-delay: 0.7s; }
+        .stagger-8 { animation-delay: 0.8s; }
+        .stagger-9 { animation-delay: 0.9s; }
+        .stagger-10 { animation-delay: 1.0s; }
+
+        /* Print Styles */
+        @media print {
+            .controls, .download-btn { display: none; }
+            .bento-card { page-break-inside: avoid; }
+            body { background: white; color: black; }
+        }
+    </style>
+</head>
+<body data-theme="light" data-color-theme="default">
+
+    <div class="controls">
+        <div class="control-button" onclick="toggleTheme()">
+            <span id="theme-icon">🌙</span>
+            <span id="theme-text">Dark</span>
+        </div>
+        <div class="theme-selector">
+            <select onchange="changeColorTheme(this.value)">
+                <option value="default">Professional</option>
+                <option value="github">GitHub</option>
+                <option value="vscode">VS Code</option>
+                <option value="terminal">Terminal</option>
+                <option value="azure">Azure</option>
+                <option value="docker">Docker</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="bento-grid">
+            
+            <!-- Profile Card -->
+            <div class="bento-card profile-card fade-in stagger-1">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%23e2e8f0'/%3E%3Ccircle cx='60' cy='45' r='20' fill='%2394a3b8'/%3E%3Cpath d='M60 75c-15 0-27 8-27 18v27h54V93c0-10-12-18-27-18z' fill='%2394a3b8'/%3E%3C/svg%3E" alt="Profile Photo" class="profile-image">
+                <h1 class="profile-name">Fayad Abdul Salam</h1>
+                <p class="profile-title">Senior Software Engineer</p>
+                <div class="contact-info">
+                    <div>📍 Dubai, UAE</div>
+                    <div>📧 fayadabdulsalam@gmail.com</div>
+                    <div>📞 +971-564593929</div>
+                </div>
+                <a href="https://www.linkedin.com/in/fyd12/" target="_blank" class="linkedin-btn">
+                    Connect on LinkedIn
+                </a>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="bento-card metrics-card fade-in stagger-2">
+                <h2 class="card-title" style="color: white;">
+                    <span class="card-icon">📊</span>
+                    Career Impact
+                </h2>
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <div class="metric-number">9+</div>
+                        <div class="metric-label">Years Experience</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-number">40%</div>
+                        <div class="metric-label">Performance Boost</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-number">99.9%</div>
+                        <div class="metric-label">System Uptime</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Card -->
+            <div class="bento-card summary-card fade-in stagger-3">
+                <h2 class="card-title">
+                    <span class="card-icon">💡</span>
+                    Profile Summary
+                </h2>
+                <p>Senior Software Engineer with 9+ years of experience specializing in C#, ASP.NET Core, and microservices architecture.</p>
+                <p>Proven track record of optimizing performance, leading teams, and delivering scalable solutions that improve productivity by 20%+.</p>
+                <div class="highlight-tags">
+                    <span class="highlight-tag">Team Leader</span>
+                    <span class="highlight-tag">Performance Optimizer</span>
+                    <span class="highlight-tag">Full-Stack Developer</span>
+                </div>
+            </div>
+
+            <!-- Skills Card -->
+            <div class="bento-card skills-card fade-in stagger-4">
+                <h2 class="card-title" style="color: white;">
+                    <span class="card-icon">🛠</span>
+                    Technical Expertise
+                </h2>
+                <div class="skills-categories">
+                    <div class="skill-category">
+                        <h4>Backend</h4>
+                        <div class="skill-items">
+                            <div class="skill-item">C#</div>
+                            <div class="skill-item">ASP.NET Core</div>
+                            <div class="skill-item">.NET 8</div>
+                            <div class="skill-item">Web API</div>
+                            <div class="skill-item">Entity Framework</div>
+                            <div class="skill-item">Microservices</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Database & Cloud</h4>
+                        <div class="skill-items">
+                            <div class="skill-item">SQL Server</div>
+                            <div class="skill-item">Azure</div>
+                            <div class="skill-item">Oracle ERP</div>
+                            <div class="skill-item">Redis</div>
+                            <div class="skill-item">MongoDB</div>
+                            <div class="skill-item">PostgreSQL</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Frontend & Tools</h4>
+                        <div class="skill-items">
+                            <div class="skill-item">Angular</div>
+                            <div class="skill-item">React</div>
+                            <div class="skill-item">TypeScript</div>
+                            <div class="skill-item">Flutter</div>
+                            <div class="skill-item">Bootstrap</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>DevOps & Integration</h4>
+                        <div class="skill-items">
+                            <div class="skill-item">Docker</div>
+                            <div class="skill-item">Azure DevOps</div>
+                            <div class="skill-item">CI/CD</div>
+                            <div class="skill-item">RabbitMQ</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Architecture & Patterns</h4>
+                        <div class="skill-items">
+                            <div class="skill-item">Clean Architecture</div>
+                            <div class="skill-item">CQRS</div>
+                            <div class="skill-item">TDD</div>
+                            <div class="skill-item">SOLID Principles</div>
+                            <div class="skill-item">Design Patterns</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Payment & CRM</h4>
+                        <div class="skill-items">
+                            <div class="skill-item">Stripe</div>
+                            <div class="skill-item">PayPal</div>
+                            <div class="skill-item">Adyen</div>
+                            <div class="skill-item">Zoho CRM</div>
+                            <div class="skill-item">Salesforce</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Card - First Row -->
+            <div class="bento-card experience-card first-row fade-in stagger-5">
+                <h2 class="card-title">
+                    <span class="card-icon">💼</span>
+                    Recent Experience
+                </h2>
+                
+                <div class="experience-item">
+                    <div class="company-header">
+                        <div>
+                            <div class="company-name">Thrifty Car Rental – Arenco Group</div>
+                            <div class="position-title">Senior Software Engineer [Contract]</div>
+                        </div>
+                        <div class="duration">May 2025 – Present</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Migrating legacy ASPX applications to modern .NET frameworks, streamlining operations and improving maintainability</li>
+                        <li>Successfully integrated multiple third-party payment gateways (NI, Adyen) with 99.99% uptime</li>
+                        <li>Designed a common gateway framework for diverse process integrations, reducing development time by 35%</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="company-header">
+                        <div>
+                            <div class="company-name">Samsotech International</div>
+                            <div class="position-title">Sr. Lead Software Engineer</div>
+                        </div>
+                        <div class="duration">Jan 2024 – May 2025</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Optimized database query performance, reducing query execution times by 30% and improving overall system efficiency by 40%</li>
+                        <li>Built secure REST APIs and integrated Single Sign-On (SSO), Active Directory, and Oracle ERP systems</li>
+                        <li>Implemented robust CI/CD pipelines in Azure DevOps, achieving 50% faster deployment cycles</li>
+                        <li>Led a team of 5 developers, mentoring junior staff and implementing Agile development practices</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Experience Card - Second Row -->
+            <div class="bento-card experience-card second-row fade-in stagger-6">
+                <h2 class="card-title">
+                    <span class="card-icon">💻</span>
+                    Previous Roles
+                </h2>
+
+                <div class="experience-item">
+                    <div class="company-header">
+                        <div>
+                            <div class="company-name">F2C Softwares</div>
+                            <div class="position-title">Lead Software Engineer</div>
+                        </div>
+                        <div class="duration">Mar 2020 – Dec 2023</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Led development of SaaS ERP and Hospital Management systems, increasing client onboarding by 25%</li>
+                        <li>Integrated payment solutions (Stripe), CRM systems (Odoo, Zoho) for automated workflows</li>
+                        <li>Achieved 99.9% system uptime through optimized architecture and proactive monitoring</li>
+                        <li>Designed efficient database models using Entity Framework, reducing data access time by 18%</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="company-header">
+                        <div>
+                            <div class="company-name">Islet Systems</div>
+                            <div class="position-title">Software Developer</div>
+                        </div>
+                        <div class="duration">Oct 2019 – Mar 2020</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Boosted SQL database performance by 20% through query optimization and indexing strategies</li>
+                        <li>Delivered 3 major application features ahead of schedule using efficient development practices</li>
+                        <li>Ensured Agile/Scrum compliance, improving sprint efficiency by 15% through better planning</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="company-header">
+                        <div>
+                            <div class="company-name">Aevea Tech</div>
+                            <div class="position-title">Full Stack Web Developer</div>
+                        </div>
+                        <div class="duration">Jul 2016 – Sep 2019</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Built responsive MVC applications using HTML, JavaScript, and AJAX, improving user responsiveness by 25%</li>
+                        <li>Optimized SQL stored procedures and database schemas, enhancing overall database efficiency by 30%</li>
+                        <li>Maintained 95% issue resolution rate within 24 hours, achieving 30% improvement in client satisfaction</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Education Card -->
+            <div class="bento-card education-card fade-in stagger-7">
+                <h2 class="card-title" style="color: white;">
+                    <span class="card-icon">🎓</span>
+                    Education
+                </h2>
+                <div class="education-item">
+                    <div class="degree">Master of Computer Applications</div>
+                    <div class="university">Annamalai University</div>
+                    <div class="year">2020 • Major: Data Science</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree">B.Sc. Computer Science</div>
+                    <div class="university">Kannur University</div>
+                    <div class="year">2016 • Major: Computer Science, Mathematics</div>
+                </div>
+            </div>
+
+            <!-- Certifications Card -->
+            <div class="bento-card certifications-card fade-in stagger-8">
+                <h2 class="card-title">
+                    <span class="card-icon">🏆</span>
+                    Certifications
+                </h2>
+                <div class="cert-item">
+                    <div>Microsoft Certified Professional (MCP)</div>
+                    <div class="cert-year">2016</div>
+                </div>
+                <div class="cert-item">
+                    <div>Azure Solutions Architect</div>
+                    <div class="cert-year">2023</div>
+                </div>
+                <div class="cert-item">
+                    <div>Deeplearning.ai – Prompt Engineering</div>
+                    <div class="cert-year">2023</div>
+                </div>
+                <div class="cert-item">
+                    <div>Career Essentials in Project Management</div>
+                    <div class="cert-year">2025 • Microsoft & LinkedIn</div>
+                </div>
+            </div>
+
+            <!-- Projects Card -->
+            <div class="bento-card projects-card fade-in stagger-9">
+                <h2 class="card-title">
+                    <span class="card-icon">🚀</span>
+                    Featured Projects
+                </h2>
+                <div class="project-grid">
+                    <div class="project-item">
+                        <div class="project-title">💰 Expense & EMI Tracker</div>
+                        <div class="project-desc">Personal finance management app with real-time analytics, budget tracking, and automated EMI calculations. Built with .NET Core and Angular.</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">🏢 HR & Leave Management System</div>
+                        <div class="project-desc">Comprehensive HR solution with attendance tracking, leave management, payroll integration, and reporting dashboards using .NET 8 MVC.</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">🚗 Multi-tenant Car ERP System</div>
+                        <div class="project-desc">Microservices-based ERP covering car auctions, shipping logistics, inventory management with multi-language support and tenant isolation.</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">🚙 Car Rental Management Platform</div>
+                        <div class="project-desc">End-to-end rental management system with fleet tracking, dynamic pricing, payment gateway integration, and comprehensive reporting.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements Card -->
+            <div class="bento-card achievements-card fade-in stagger-10">
+                <h2 class="card-title">
+                    <span class="card-icon">🏅</span>
+                    Key Achievements
+                </h2>
+                <div class="achievement-grid">
+                    <div class="achievement-item">
+                        <span class="achievement-icon">⚡</span>
+                        <div class="achievement-text">50% Faster Deployments</div>
+                    </div>
+                    <div class="achievement-item">
+                        <span class="achievement-icon">📈</span>
+                        <div class="achievement-text">30% Query Performance Boost</div>
+                    </div>
+                    <div class="achievement-item">
+                        <span class="achievement-icon">👥</span>
+                        <div class="achievement-text">Led Teams of 5+ Developers</div>
+                    </div>
+                    <div class="achievement-item">
+                        <span class="achievement-icon">🎯</span>
+                        <div class="achievement-text">99.9% System Uptime</div>
+                    </div>
+                    <div class="achievement-item">
+                        <span class="achievement-icon">💡</span>
+                        <div class="achievement-text">20+ Successful Integrations</div>
+                    </div>
+                    <div class="achievement-item">
+                        <span class="achievement-icon">🚀</span>
+                        <div class="achievement-text">25% Client Onboarding Increase</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <a href="#" class="download-btn" onclick="window.print()">
+        📄 Download PDF
+    </a>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark';
+            }
+        }
+
+        function changeColorTheme(theme) {
+            document.body.setAttribute('data-color-theme', theme);
+        }
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.fade-in');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.animation = `fadeIn 0.6s ease-out ${index * 0.1}s forwards`;
+                }, 100);
+            });
+        });
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
